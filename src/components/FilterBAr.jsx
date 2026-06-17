@@ -23,12 +23,12 @@ const FilterBAr = () => {
                <div  className='px-2 py-3 flex flex-col gap-4'>
                   <div className='flex items-center justify-between  border border-purple-300 rounded bg-purple-100 py-2 px-2'>
                       <label htmlFor="" className='flex items-center gap-4 font-medium'><HiArrowTrendingUp color='red'size={22}/>High → Low</label>
-                     <input type="radio" name="sort" value="highToLow" />
+                     <input className='accent-purple-600' type="radio" name="sort" value="highToLow" />
                   </div>
 
                   <div className='flex items-center justify-between px-2'>
                      <label htmlFor="" className='flex items-center gap-4 font-medium ' ><HiArrowTrendingDown color='green' size={22}/>Low → High</label>
-                     <input type="radio" name="sort" value="lowToHigh" />
+                     <input   className='accent-purple-600' type="radio" name="sort" value="lowToHigh" />
                   </div>
               </div>
 
