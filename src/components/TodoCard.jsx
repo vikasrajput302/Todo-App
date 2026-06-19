@@ -39,7 +39,7 @@ const handleRemove = (e)=>{
           <input onChange={(e)=>{handleOnChange(e);
           }}  defaultChecked={elem.completed} type="checkbox" className=' accent-green-600 mt-3 scale-125 md:scale-150'   />
           <div className=''>
-            <label  className={`${(elem.completed)? "line-through font-semibold md:text-xl tracking-tight  " : "font-semibold md:text-xl tracking-tight"}`} htmlFor="">{elem.title}</label>
+            <label  className={`${(elem.completed)? "line-through font-semibold md:text-xl tracking-tight  " : "font-semibold md:text-xl tracking-tight"}`} >{elem.title}</label>
             <p className={`${elem.completed ? "line-through text-gray-500 text-sm md:text-lg font-medium leading-tight" : "text-gray-500 text-sm md:text-lg font-medium leading-tight"}`}>{elem.description}</p>
             <div className=' flex gap-4 py-2 md:gap-10 '>
               <div className={`${(elem.priority == "high")? " border-green-300 rounded bg-green-50 text-green-500 " : (elem.priority == "medium")? " border-yellow-300 rounded bg-yellow-50 text-yellow-500 " : " border-red-300 rounded bg-red-50 text-red-500 "} border font-medium px-2 md:px-3 py-1 text-sm`}>{elem.priority}</div>

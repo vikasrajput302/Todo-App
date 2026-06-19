@@ -60,21 +60,21 @@ const TodoForm = ({todos,setTodos}) => {
                 onChange={(e)=>{setPriority(e.target.value)}}
                 
                 required className='mr-2 accent-green-600 ' type="radio" name='priority' value="high"/>
-               <label htmlFor="priority">
+               <label >
                 High</label>
          </div>
              
              <div  className='border flex border-yellow-200 text-yellow-500 bg-yellow-50 rounded px-4 py-1 font-medium text-sm'>
                  <input onChange={(e)=>{setPriority(e.target.value)}}
                  required className='mr-2 accent-yellow-700  ' type="radio" name='priority' value="medium"/>
-               <label htmlFor="priority">
+               <label >
                 Medium</label>
              </div>
              <div className='border flex border-red-200 text-red-500 bg-red-100 rounded px-4 py-1 font-medium text-sm '>
               
                  <input onChange={(e)=>{setPriority(e.target.value)}}
                   required className='mr-2 accent-red-600 ' type="radio" name='priority' value="low"/>
-              <label htmlFor="priority">
+              <label>
                  Low</label>
              </div>
             </div>
