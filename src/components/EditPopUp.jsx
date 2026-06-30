@@ -1,37 +1,45 @@
-import React, { useState } from "react";
-import { FiPlus } from "react-icons/fi";
+import React, { useEffect, useState } from "react";
 
+const EditPopUp = ({ editID,setEditID ,todos, setTodos, setShowEdit }) => {
 
-const TodoForm = ({ todos, setTodos }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newTodo = {
-      id: crypto.randomUUID(),
-      title,
-      description,
-      priority,
-      completed: false,
-      createdAt: new Date().toISOString().split("T")[0],
-    };
-
-    setTodos((prev) => [...prev, newTodo]);
-    setTitle("");
-    setDescription("");
-    setPriority("");
+    const newTodos = todos.map((todo) => {
+      if (todo.id == editID) {
+        return {
+          ...todo,
+          title,
+          description,
+          priority,
+        };
+      } else {
+        return todo;
+      }
+    })
+    setTodos(newTodos),
+    setEditID("")
+    setShowEdit(false);
   };
 
+  useEffect(() => {
+    const todo = todos.find((todo) => todo.id == editID);
+    if (todo) {
+      setTitle(todo.title);
+      setDescription(todo.description);
+      setPriority(todo.priority);
+    }
+  }, [editID]);
+
   return (
-    <div className="border border-gray-300 bg-white rounded px-4 py-4 flex flex-col gap-4 ">
-      <h1 className="text-purple-600 font-medium text-lg">Add New Todo</h1>
+    <div className="fixed inset-0 w-screen h-screen bg-black/50 flex items-center justify-center backdrop-blur-xl overflow-hidden z-10">
       <form
         onSubmit={(e) => handleSubmit(e)}
         action=""
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 bg-white p-10 border border-zinc-400 rounded-xl"
       >
         <input
           onChange={(e) => {
@@ -59,11 +67,12 @@ const TodoForm = ({ todos, setTodos }) => {
 
           <div className=" border flex border-green-200 text-green-600 bg-green-100 rounded px-4 py-1 font-medium text-sm">
             <input
+              checked={priority === "high"}
               onChange={(e) => {
                 setPriority(e.target.value);
               }}
               required
-              className="mr-2 accent-green-600 "
+              className="mr-2 accent-green-600"
               type="radio"
               name="priority"
               value="high"
@@ -73,6 +82,7 @@ const TodoForm = ({ todos, setTodos }) => {
 
           <div className="border flex border-yellow-200 text-yellow-500 bg-yellow-50 rounded px-4 py-1 font-medium text-sm">
             <input
+              checked={priority == "medium"}
               onChange={(e) => {
                 setPriority(e.target.value);
               }}
@@ -86,6 +96,7 @@ const TodoForm = ({ todos, setTodos }) => {
           </div>
           <div className="border flex border-red-200 text-red-500 bg-red-100 rounded px-4 py-1 font-medium text-sm ">
             <input
+              checked={priority === "low"}
               onChange={(e) => {
                 setPriority(e.target.value);
               }}
@@ -99,11 +110,11 @@ const TodoForm = ({ todos, setTodos }) => {
           </div>
         </div>
         <button className="w-full bg-purple-600 rounded py-2 text-white font-medium text-lg">
-          + Add Todo
+          Save Todo
         </button>
       </form>
     </div>
   );
 };
 
-export default TodoForm;
+export default EditPopUp;
